@@ -8,7 +8,7 @@ const axios = require('axios');
 const {Videogame,Genero} = require('../db');
 
 const router = Router();
-
+ 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -21,17 +21,18 @@ const ApiVG= async () => {
     let juegos=[]    
     let api=`https://api.rawg.io/api/games?key=${YOUR_API_KEY}`
     for (let index = 1; index <= 5; index++){
-    const {data:{results,next}}= await axios.get(api);
+    const {data:{results,next,description}}= await axios.get(api);
         api=next
         juegos = juegos.concat(results.map(juego => {
             return { 
                 name: juego.name, 
                 background_image:juego.background_image,
-                genres: juego.genres.map(g=>{return g.name}),
+                genres: juego.genres.map(j=>j.name),
                 released: juego.released,
                 rating: juego.rating,    
-                platforms: juego.platforms.map(p=> {return  p.platform.name}),
-            }
+                platforms: juego.platforms.map(j=>j.platform.name),
+                description:description
+            } 
         }))}
         return juegos
     }
@@ -44,7 +45,10 @@ const Db = async()=>{
     return await Videogame.findAll({
         include:{
             model:Genero, 
-            attributes:["name"]
+            attributes:["name"],
+            through: {
+                attributes: [],
+              }
             
         }
     })
@@ -52,22 +56,24 @@ const Db = async()=>{
                 
 const totalDeJuegos = async () =>{
 const juegosApi =  await ApiVG()
-    const juegosDb = await Db()  
+    const jDb = await Db()  
+    const juegosDb=jDb.map(j=>{
+        
+        return{
+            
+            name:j.dataValues.name,
+            rating:j.dataValues.rating,
+            genres:j.dataValues.generos.map(j=>j.name),
+            platforms:j.dataValues.platforms,
+            description:j.dataValues.description
+        }
+    })
+    console.log(jDb)
     const juegos= juegosApi.concat(juegosDb)
     return juegos
-}
-                
-const rutaPrincipal = async ()=>{
-    const juegoss = await totalDeJuegos()
-    return juegoss.map(j=>{return{
-        name:j.name,
-        background_image:j.background_image,
-        genres:j.genres,
-        released:j.released,
-        rating:j.rating,
-        platforms:j.platforms 
-    }})
-    } 
+} 
+                 
+
           
         
     
@@ -94,14 +100,13 @@ if (name) {
     buscarName.length ? res.json(buscarName) : res.status(404).send ('No existe ningun juego con este nombre')
 }else{
 
-    res.json( await rutaPrincipal())
+    res.json( await totalDeJuegos())
 }    
 } )    
 
     
    
     
-
 
 
 
@@ -128,7 +133,8 @@ if (name) {
 const ApiId= async (id) => {
     const apiID= await axios.get(`https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`);
     return {
-        background_image:apiID.data.background_image,
+        background_image  :apiID.data. background_image,
+        
         name:apiID.data.name,
         genres: apiID.data.genres.map(g=>{return g.name}),
         description: apiID.data.description_raw,
@@ -210,30 +216,36 @@ router.get('/genres', async ( req,res)=>{
 //post/videogames
 
 router.post('/videogames', async (req,res)=>{
+  
     let { name, description, released, rating, genres, platforms } = req.body;
     if(!name||!description||!released||!rating||!platforms){return res.send('faltan datos')} 
-     
-    
+  
     let vgGenero = await Genero.findAll({
-        where: { name: genres},
-      });
-        let [crearVG]= await Videogame.findOrCreate({
-            where:{name:name},
-            defaults:{
-                released, 
-                rating,
-                name,
-                description,
-                platforms
-            }
-                
-            }); 
-
+        where: { name: genres}});
+    
+    let [crearVG]= await Videogame.findOrCreate({
+        where:{name:name},
+        defaults:{
+            name,
+            description,
+            released, 
+            rating,
+            platforms,
+            
+        }
+            
+        });  
+       
+   
+  
+crearVG.addGenero(vgGenero) 
+res.send(crearVG)  
+}) 
+     
+        
         
   
   
-      res.json(crearVG) 
-  }) 
 
     
     module.exports = router;
