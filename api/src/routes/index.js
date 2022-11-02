@@ -68,7 +68,7 @@ const juegosApi =  await ApiVG()
             description:j.dataValues.description
         }
     })
-    console.log(jDb)
+    
     const juegos= juegosApi.concat(juegosDb)
     return juegos
 } 
@@ -137,26 +137,39 @@ const ApiId= async (id) => {
         
         name:apiID.data.name,
         genres: apiID.data.genres.map(g=>{return g.name}),
-        description: apiID.data.description_raw,
+        description: apiID.data.description_raw, 
         released: apiID.data.released,
         rating: apiID.data.rating,    
         platforms: apiID.data.platforms.map(p=> {return  p.platform.name}),
     }
 }    
     
-    
-    
-
 const DbId = async(id)=>{
     const juegoID = await Videogame.findByPk(id,   
         {
             include:{
                 model:Genero,
-                attributes:["name"]
+                attributes:["name"],
             }
         })
-    }
+        const jID={
+           
+            name:juegoID.name,
+            genres:juegoID.generos.map(e=>e.dataValues.name),
+            released:juegoID.released,
+            rating:juegoID.rating,
+            platforms:juegoID.platforms,
+            description:juegoID.description
+               
+        }    
+        return jID
+    }   
+    
+    
 
+
+
+    
 
     router.get('/videogame/:id', async ( req,res)=>{
         const {id} = req.params;
@@ -167,7 +180,7 @@ const DbId = async(id)=>{
             res.json( await DbId(id))}
 
         } catch (error) { 
-            res.status(404).send({err:error.message})
+            res.status(404).send("No se encuentra el juego")
         }})
 
 
@@ -202,8 +215,15 @@ const getGenerosDb = async ()=>{
 
 
 router.get('/genres', async ( req,res)=>{
-    const getGen = await getGenerosDb()
-    res.json( await getGen)
+    try {
+        const getGen = await getGenerosDb()
+        res.json( await getGen)
+    } catch (error) {
+       console.log(error)
+        
+    }
+
+
 })
     
 
@@ -218,28 +238,34 @@ router.get('/genres', async ( req,res)=>{
 router.post('/videogames', async (req,res)=>{
   
     let { name, description, released, rating, genres, platforms } = req.body;
+    
     if(!name||!description||!released||!rating||!platforms){return res.send('faltan datos')} 
   
-    let vgGenero = await Genero.findAll({
+    try {
+        let vgGenero = await Genero.findAll({
         where: { name: genres}});
-    
-    let [crearVG]= await Videogame.findOrCreate({
-        where:{name:name},
-        defaults:{
-            name,
-            description,
-            released, 
-            rating,
-            platforms,
-            
-        }
-            
+      
+        let [crearVG]= await Videogame.findOrCreate({
+            where:{name:name},
+            defaults:{
+                name,
+                description,
+                released, 
+                rating,
+                platforms,
+            }
         });  
-       
-   
-  
-crearVG.addGenero(vgGenero) 
-res.send(crearVG)  
+        crearVG.addGenero(vgGenero) 
+        res.send(crearVG)  
+    } catch (error) {
+        console.log(error)
+    }
+        
+            
+         
+     
+    
+    
 }) 
      
         
