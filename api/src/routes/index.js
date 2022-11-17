@@ -6,40 +6,42 @@ const { YOUR_API_KEY } = process.env;
 const axios = require('axios');
 
 const {Videogame,Genero} = require('../db');
-
+ 
 const router = Router();
  
-// Configurar los routers
+// Configurar los routers 
 // Ejemplo: router.use('/auth', authRouter);
+ 
+ 
+   
+   
 
  
-
-
-
-
 const ApiVG= async () => {
     let juegos=[]    
+    
+    
     let api=`https://api.rawg.io/api/games?key=${YOUR_API_KEY}`
     for (let index = 1; index <= 5; index++){
     const {data:{results,next,description}}= await axios.get(api);
         api=next
         juegos = juegos.concat(results.map(juego => {
             return { 
+                id:juego.id,
                 name: juego.name, 
-                background_image:juego.background_image,
-                genres: juego.genres.map(j=>j.name),
+                background_image:juego.background_image,  
+                genres: juego.genres.map(j=>j.name), 
                 released: juego.released,
                 rating: juego.rating,    
                 platforms: juego.platforms.map(j=>j.platform.name),
                 description:description
             } 
-        }))}
+        }))}  
         return juegos
     }
-             
+              
+                
             
-               
-           
                 
 const Db = async()=>{
     return await Videogame.findAll({
@@ -60,7 +62,7 @@ const juegosApi =  await ApiVG()
     const juegosDb=jDb.map(j=>{
         
         return{
-            
+            id:j.dataValues.id,
             name:j.dataValues.name,
             rating:j.dataValues.rating,
             genres:j.dataValues.generos.map(j=>j.name),
@@ -102,7 +104,7 @@ if (name) {
 
     res.json( await totalDeJuegos())
 }    
-} )    
+} )     
 
     
    
@@ -127,13 +129,14 @@ if (name) {
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+ 
 //get /videogame/{idVideogame}:
 
 const ApiId= async (id) => {
     const apiID= await axios.get(`https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`);
     return {
-        background_image  :apiID.data. background_image,
+        id:apiID.data.id,
+        background_image  :apiID.data.background_image,
         
         name:apiID.data.name,
         genres: apiID.data.genres.map(g=>{return g.name}),
@@ -143,8 +146,8 @@ const ApiId= async (id) => {
         platforms: apiID.data.platforms.map(p=> {return  p.platform.name}),
     }
 }    
-    
-const DbId = async(id)=>{
+     
+const DbId = async(id)=>{ 
     const juegoID = await Videogame.findByPk(id,   
         {
             include:{
@@ -152,8 +155,10 @@ const DbId = async(id)=>{
                 attributes:["name"],
             }
         })
+      
         const jID={
-           
+            
+            id:juegoID.id,
             name:juegoID.name,
             genres:juegoID.generos.map(e=>e.dataValues.name),
             released:juegoID.released,
@@ -162,10 +167,10 @@ const DbId = async(id)=>{
             description:juegoID.description
                
         }    
-        return jID
-    }   
+        return jID 
+    }    
     
-    
+     
 
 
 
@@ -183,7 +188,7 @@ const DbId = async(id)=>{
             res.status(404).send("No se encuentra el juego")
         }})
 
-
+ 
 
 
 
@@ -194,7 +199,7 @@ const DbId = async(id)=>{
 En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
 GET https://api.rawg.io/api/genres
 
-
+ 
 */
 
     
@@ -252,7 +257,7 @@ router.post('/videogames', async (req,res)=>{
                 description,
                 released, 
                 rating,
-                platforms,
+                platforms
             }
         });  
         crearVG.addGenero(vgGenero) 
@@ -261,7 +266,7 @@ router.post('/videogames', async (req,res)=>{
         console.log(error)
     }
         
-            
+             
          
      
     
