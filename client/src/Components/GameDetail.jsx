@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import {getGameId} from '../actions';
 import { Link } from 'react-router-dom';
-
+import s from '../style/Home.module.css'
 
 
 
@@ -18,23 +18,26 @@ export default function GameDetail({id}) {
       const game = useSelector((state) => state.gameDetail);
         
       return (
-          <div>
+          <div className={s.detailF}>
               <Link to='/home'>
-                <button>VOLVER</button>
+                <button className={s.botonDetail}>VOLVER</button>
                 </Link>
+            <div className={s.dcard}>
 
-              <h1> {game.name}</h1>
-                <h6>{game.released}</h6>
+              <h1 className={s.name}> {game.name}</h1>
               <img
+              className={s.imgdetail}
               src={game.background_image}
               width='25%'
-              alt="Imagen inexistente"
+              alt=''
               />
-              <p>{game.description}</p>
-             <h5>Generos: {game.genres}</h5>
-              <h5>Plataformas: {game.platforms}</h5>
-               <h5>rating: {game.rating}</h5>
+             <h5 className={s.texto}>Generos: {` ${game.genres}`}</h5>
+              <p className={s.texto}>{game.description}</p>
+                <h5 className={s.texto}>{game.released}</h5>
+               <h5 className={s.texto}>rating: {game.rating}</h5>
+              <h5 className={s.texto}>Plataformas: {` ${game.platforms}`}</h5>
              
+              </div>
           </div>
         );
       }

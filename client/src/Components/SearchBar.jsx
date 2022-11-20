@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import {useDispatch} from 'react-redux';
 import {getGame} from '../actions';
-
+import s from '../style/Home.module.css'
  
 
 const SearchBar = ()=>{
@@ -25,15 +25,16 @@ const SearchBar = ()=>{
 
 
     return(
-        <div>
+        <div className={s.buscador}>
             <input 
+            className={s.searchBar}
             type="text"
              placeholder='Buscar...' 
              onChange={e=>handleInput(e)} />
            
-            <button
+            <button className={s.searchBarB}
              type='submit'
-              onClick={e=>submit(e)}>BUSCAR</button>
+              onClick={e=>submit(e)}></button>
         </div>
     
 )

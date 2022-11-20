@@ -1,4 +1,6 @@
 import React from "react";
+import s from '../style/Home.module.css'
+
 
 export default function Paginado ({juegosPorPag,allGames,paginado}){
     const numeroDePagina =[]
@@ -8,17 +10,17 @@ export default function Paginado ({juegosPorPag,allGames,paginado}){
 }
 
     return(
-        <nav>
-                <ul>
+       
+                <ul className={s.ul}>
                     {numeroDePagina && numeroDePagina.map(n=>(
-                        <button key={n} onClick={()=>paginado(n)}>
+                        <button className={s.pag} key={n} onClick={()=>paginado(n)}>
 
                             {n}
                         </button>
                    
                     ))}
                 </ul>
-            </nav>
+            
         )
         
     }

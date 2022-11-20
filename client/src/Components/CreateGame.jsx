@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-
+import s from '../style/Home.module.css'
 
 
 function validate(input) {
@@ -23,13 +23,16 @@ function validate(input) {
     if (!input.rating) {
       error.rating = "Ingrese Rating";
     } else if (!/^([1-5](\.[0-9]{1,2})?)$/.test(input.rating)) {
-        error.rating ='reating incorrecto'}
+        error.rating ='rating incorrecto'}
     
-        if (input.genres.length < 1) {
+    if (input.genres.length < 1) {
+     
       error.genres = "Seleccione un Genero";
     }
-    if (input.platforms.length < 1) {
+    
+    if (input.platforms.length<1) {
       error.platforms = "Seleccione una Plataforma";
+
     }  
     return error;
   }
@@ -38,6 +41,7 @@ const CreateGame =()=>{
 
     const initialState={
         name:'',
+        background_image:'',
         description:'',
         released:'',
         rating:'ingrese numero',
@@ -49,29 +53,73 @@ const CreateGame =()=>{
     let [input,setInput]= useState(initialState);
     let [error,setError]= useState({})
 
+   
+
+    
+        
+      
+  
+          
+
     let handleOnChange = (e)=>{
       e.preventDefault();
+      
       setInput({
+        ...input,
+        [e.target.name]:e.target.value,
+      })
+      setError(validate({
+        ...input,
+        [e.target.name]:e.target.value
+        
+      }))
+    
+    if(e.target.name==='platforms'){
+      if(!(input.platforms.includes(e.target.value))&& (e.target.value!==''))
+        {
+          setInput({
             ...input,
-            [e.target.name]:e.target.value,
+            platforms:[...input.platforms, e.target.value] 
+          })
+        }else if(input.platforms.includes(e.target.value)){
+          setInput({
+            ...input,
+            platforms:[...input.platforms.filter(p=> p!==e.target.value)]
+          })
+
+        }else{
+          
+          setInput({
+            ...input,
+            platforms:[...input.platforms]
         })
-        setError(validate({
-            ...input,
-            [e.target.name]:e.target.value
-        }))
+      }}
         
-        if(e.target.name==='genres'){
-            setInput({
-                ...input,
-                genres:[...input.genres,` ${e.target.value}`]
-        })}
-        
-        if(e.target.name==='platforms'){
-            setInput({
-                ...input,
-                platforms:[...input.platforms,` ${e.target.value}`]
-        })}
-      }
+    
+    if(e.target.name==='genres'){
+    if(!(input.genres.includes(e.target.value))&& (e.target.value!==''))
+    {
+      setInput({
+        ...input,
+        genres:[...input.genres, e.target.value] 
+      })
+    }else if(input.genres.includes(e.target.value)){
+      setInput({
+        ...input,
+        genres:[...input.genres.filter(p=> p!==e.target.value)]
+      })
+
+    }else{
+      setInput({
+        ...input,
+        genres:[...input.genres]
+    })
+  } }
+  }
+    
+      
+      
+      
       
       let handleOnSubmit = (e)=>{
         e.preventDefault();
@@ -79,6 +127,7 @@ const CreateGame =()=>{
         alert('juego creado')
         setInput({
           name:'',
+          background_image:'',
           description:'',
           released:'',
           rating:"3",
@@ -98,48 +147,55 @@ const CreateGame =()=>{
     
     
     return(
-        <>
-        <Link to ='/home'>
-                    <button>VOLVER</button>
+        <div className={s.fondoCreate}>
+        <Link  to ='/home'>
+                    <button className={s.recargar}>VOLVER</button>
                 </Link>
-        <h2>crearJuego</h2>
-        <form onSubmit={handleOnSubmit}>
+        <h2 className={s.h2}>CREA TU PROPIO JUEGO</h2>
+        <form className={s.createForm} onSubmit={handleOnSubmit}>
            <div>
-                <label>Nombre</label>
-                <input 
+                <label className={s.label}>NOMBRE </label><br />
+                <input
+                 className={s.input} 
                 type='text'
                 value={input.name}
                 name='name'
                 onChange={handleOnChange}
                 />
            </div>
-           <p>{error.name}</p>
-           
+           <p className={s.error}>{error.name}</p>
+                     
+
            <div>
-                <label>Descripción</label>
+                <label  className={s.label}>DESCRIPCION </label><br />
                 <input 
+                className={s.input}
                 type='text'
                 value={input.description}
                 name='description'
                 onChange={handleOnChange}
                 />
            </div>
-           <p>{error.description}</p>
+           <p className={s.error}>{error.description}</p>
            
            <div>
-                <label>Fecha de Lanzamiento</label>
-                <input 
+                <label  className={s.label}>FECHA DE LANZAMIENTO </label> 
+                <br />
+                <input
+                 className={s.input} 
                 type='text'
                 value={input.released}
                 name='released'
                 onChange={handleOnChange}
                 />
            </div>
-           <p>{error.released}</p>
+           <p className={s.error}>{error.released}</p>
            
            <div>
-                <label>Rating</label>
+                <label  className={s.label}>RATING </label>
+                <br />
                 <input 
+                 className={s.input}
                 type='number'
                 step='0.1'
                
@@ -148,59 +204,72 @@ const CreateGame =()=>{
                 onChange={handleOnChange}
                 />
            </div>
-           <p>{error.rating}</p>
+           <p className={s.error}>{error.rating}</p>
                
        
            
-            <label >Generos</label>
-            <select name='genres'value={input.genres} onChange={handleOnChange}>genres
-                  <option value='Action'>Action</option>
-                  <option value='Indie'>Indie</option>
-                  <option value='Casual'>Casual</option>
-                  <option value='Adventure'>Adventure</option>
-                  <option value='RPG'>RPG</option>
-                  <option value='Strategy'>Strategy</option>
-                  <option value='Simulation'>Simulation</option>
-                  <option value='Shooter'>Shooter</option>
-                  <option value='Puzzle'>Puzzle</option>
-                  <option value='Arcade'>Arcade</option>
-                  <option value='Plataformer'>Platformer</option>
-                  <option value='Racing'>Racing</option>
-                  <option value='Massively Multiplayer'>
+            <label  className={s.label}>GENEROS</label>
+            <select  className={s.input} name='genres'value={input.genres} onChange={handleOnChange}>genres
+                  <option></option>
+                  <option value=' Action'>Action</option>
+                  <option value=' Indie'>Indie</option>
+                  <option value=' Casual'>Casual</option>
+                  <option value=' Adventure'>Adventure</option>
+                  <option value=' RPG'>RPG</option>
+                  <option value=' Strategy'>Strategy</option>
+                  <option value=' Simulation'>Simulation</option>
+                  <option value=' Shooter'>Shooter</option>
+                  <option value=' Puzzle'>Puzzle</option>
+                  <option value=' Arcade'>Arcade</option>
+                  <option value=' Plataformer'>Platformer</option>
+                  <option value=' Racing'>Racing</option>
+                  <option value=' Massively Multiplayer'>
                     Massively Multiplayer
                   </option>
-                  <option value='Sports'>Sports</option>
-                  <option value='Fighting'>Fighting</option>
-                  <option value='Family'>Family</option>
-                  <option value='Board Games'>Board Games</option>
-                  <option value='Educational'>Educational</option>
-                  <option value='Card'>Card</option>
+                  <option value=' Sports'>Sports</option>
+                  <option value=' Fighting'>Fighting</option>
+                  <option value=' Family'>Family</option>
+                  <option value=' Board Games'>Board Games</option>
+                  <option value=' Educational'>Educational</option>
+                  <option value=' Card'>Card</option>
                 </select>
-                <p>{input.genres}</p>
+                    <p className={s.option}>{input.genres}</p>
+                    <p className={s.suprimirFiltros}>*Para borrar un Genero vuelva a seleccionarlo</p>
+                    <p className={s.error}>{error.genres}</p>
                 
-                  <label >Plataformas</label>
-                    <select name='platforms'value={input.platforms} onChange={handleOnChange}>
-                      <option>PC</option>
-                      <option>Play Station 5</option>
-                      <option>Play Station 4</option>
-                      <option>Xbox One</option>
-                      <option>Xbox Series S/X</option>
-                      <option>Nintendo Switch</option>
-                      <option>iOS</option>
-                      <option>Android</option>
-                      <option>Nintendo 3DS</option>
-                      <option>Nintendo DS</option>
-                      <option>Nintendo DSi</option>
-                      <option>macOS</option>
-                      <option>Linux</option>
-                      <option>Xbox 360</option>
-                      <option>Play Station 3</option>
+                
+                        
+                  
+                  
+                      
+                
+                  <label  className={s.label} >PLATAFORMAS</label>
+                    <select  className={s.input} name='platforms'value={input.platforms} onChange={handleOnChange}>
+                      <option></option>
+                      <option value=' PC'>PC</option>
+                      <option value=' Play Station 5'>Play Station 5</option>
+                      <option value=' Play Station 4'>Play Station 4</option>
+                      <option value=' Xbox One'>Xbox One</option>
+                      <option value=' Xbox Series S/X'>Xbox Series S/X</option>
+                      <option value=' Nintendo Switch'>Nintendo Switch</option>
+                      <option value=' iOS'>iOS</option>
+                      <option value=' Android'>Android</option>
+                      <option value=' Nintendo 3DS'>Nintendo 3DS</option>
+                      <option value=' Nintendo DS'>Nintendo DS</option>
+                      <option value=' Nintendo DSi'>Nintendo DSi</option>
+                      <option value=' macOS'>macOS</option>
+                      <option value=' Linux'>Linux</option>
+                      <option value=' Xbox 360'>Xbox 360</option>
+                      <option value=' Play Station 3'>Play Station 3</option>
                     </select>
-                    <p>{input.platforms}</p>
+                      <p className={s.option}>{input.platforms}</p>
+                      <p className={s.suprimirFiltros}>*Para borrar una Plataforma vuelva a seleccionarlo</p>
+                      <p className={s.error}>{error.platforms}</p>
 
-       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'>CREAR JUEGO</button>
+
+       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'className={s.botonCrearJ}>CREAR JUEGO</button>
         </form>
-        </>
+        </div>
     )
 }
 export default CreateGame;

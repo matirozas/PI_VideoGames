@@ -12,7 +12,7 @@ const router = Router();
 // Configurar los routers 
 // Ejemplo: router.use('/auth', authRouter);
  
- 
+  
    
    
 
@@ -58,7 +58,7 @@ const Db = async()=>{
                 
 const totalDeJuegos = async () =>{
 const juegosApi =  await ApiVG()
-    const jDb = await Db()  
+    const jDb = await Db()   
     const juegosDb=jDb.map(j=>{
         
         return{
