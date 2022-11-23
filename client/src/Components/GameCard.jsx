@@ -1,7 +1,10 @@
 import React from "react";
-import s from '../style/Home.module.css'
+import s from '../style/GameCard.module.css'
 
-export default function GameCard({ name, background_image, genres, id}) {
+export default function GameCard({ name, background_image, genres}) {
+  if(!background_image){
+    background_image='https://static.vecteezy.com/system/resources/previews/002/293/504/non_2x/video-games-neon-sign-vector.jpg';
+  }
   return (
     <div>
 

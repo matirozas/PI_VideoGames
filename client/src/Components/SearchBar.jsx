@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import {useDispatch} from 'react-redux';
 import {getGame} from '../actions';
-import s from '../style/Home.module.css'
+import s from '../style/SearchBar.module.css'
  
 
 const SearchBar = ()=>{
@@ -13,13 +13,14 @@ const SearchBar = ()=>{
     
     const handleInput=(e)=>{
         e.preventDefault();
+        
         setName(e.target.value)
-        console.log(setName)
-       
+        
     }
 
     const submit=(e)=>{
         e.preventDefault();
+        if(!name)alert('Ingresar Juego')
         dispatch(getGame(name))
     }
 

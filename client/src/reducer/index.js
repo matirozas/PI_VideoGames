@@ -3,6 +3,7 @@ const initialState={
     games:[],
     gameDetail:{},
     gamestotal:[],
+    gamesT:[]
   
 
 }
@@ -12,11 +13,13 @@ function reducer(state=initialState,action){
             return{
                 ...state,
                 games:action.payload,
-                gamestotal:action.payload
+                gamestotal:action.payload,
+                gamesT:action.payload
             }
 
         case 'GET_GAME':
             return{
+                
                 ...state,
                 games:action.payload,
                
@@ -26,29 +29,33 @@ function reducer(state=initialState,action){
                 ...state,
                 gameDetail:action.payload
             }
+       
+            case 'FILTRAR_JUEGO':
+                   let juegosF=state.games;
+                   let totalDeJuegosF= state.gamestotal;
+                  
+                   juegosF=totalDeJuegosF;
+                   let filtroF=action.payload==='creado'? 
+                   juegosF.filter(j=>isNaN(j.id)) :
+                   juegosF.filter(j=>!isNaN(j.id));
+                   
+                   return{
+                       ...state,
+                       games: action.payload === 'todos'? totalDeJuegosF : filtroF,
+                       gamesT: action.payload === 'todos'? totalDeJuegosF : filtroF
+                   }
+                    
+       
         case 'FILTRAR_POR_GENERO':
             let juegos= state.games;
-            let totalJuegos= state.gamestotal;
-            juegos= totalJuegos;
-            let filtro= action.payload ==='Todos'? juegos : 
+            let totalJuegos= state.gamesT;
+          juegos= totalJuegos;
+            let filtro= action.payload ==='Todos'? totalJuegos : 
             juegos.filter(j=>j.genres.includes(action.payload))
             return {
                 ...state,
                 games:filtro
             }
-        case 'FILTRAR_JUEGO':
-               let juegosF=state.games;
-               let totalDeJuegosF= state.gamestotal;
-               juegosF=totalDeJuegosF;
-               let filtroF=action.payload==='creado'? 
-               juegosF.filter(j=>isNaN(j.id)) :
-               juegosF.filter(j=>!isNaN(j.id))
-                    
-               return{
-                   ...state,
-                   games: action.payload === 'todos'? totalDeJuegosF : filtroF
-               }
-                
         case 'ORDENAR_ALFAB':
             let ordenJ = action.payload === 'a-z'? 
             
@@ -108,8 +115,11 @@ function reducer(state=initialState,action){
                     ...state,
                     games:ordenR
                 }
-               
-                  
+            case 'POST_VIDEOJUEGO':
+                    return {
+                      ...state
+                    }
+                   
         
             default: return state;
            

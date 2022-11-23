@@ -1,0 +1,43 @@
+.landing{
+    width: 100%;
+    height: 100vh;
+    display: block;
+    flex-wrap: wrap;
+    text-align: center;
+    background-image: url('../imagenes/landing\ definitiva.jpg');
+    image-rendering: auto;
+    background-repeat: repeat;
+    background-size:cover;
+    background-position: center;
+    overflow-x: hidden;
+    margin-top: 0%;
+  }
+  .landingH1{
+    color: white;
+    text-shadow: 5px 5px 10px rgb(255, 0, 0), -5px -5px 10px rgb(255, 0, 0);
+    font-size: 75px;
+  }
+  .buttonL{
+    text-decoration: none;
+    background-color:  rgb(206, 7, 7);;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 5px;
+    box-shadow: 1px 1px 20px rgb(255, 255, 255), -1px -1px 20px rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  .buttonL:hover{
+    text-decoration: none;
+    background-color:  rgb(255, 87, 4);;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 5px;
+    box-shadow: 1px 1px 20px rgb(255, 255, 255), -1px -1px 20px rgb(255, 255, 255);
+    
+  }

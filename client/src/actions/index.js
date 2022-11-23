@@ -7,6 +7,7 @@ export const FILTRAR_JUEGO = 'FILTRAR_JUEGO'
 export const ORDENAR_ALFAB = 'ORDENAR_ALFAB'
 export const ORDENAR_RATING = 'ORDENAR_RATING'
 export const GET_GAME = 'GET_GAME'
+export const POST_VIDEOJUEGO = 'POST_VIDEOJUEGO'
 
 
 
@@ -60,6 +61,15 @@ export const getAllGames = () => async (dispatch) => {
       payload
     }
   }
+  
+  export const postVideojuego = (payload) => {
+    return async function (dispatch) {
+      const json = await axios.post('http://localhost:3001/videogames', payload);
+      return dispatch({
+         type: POST_VIDEOJUEGO,
+         payload: json.data })
+    }
+  };
 
  
 

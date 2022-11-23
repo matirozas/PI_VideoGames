@@ -1,0 +1,49 @@
+.detailF{
+    width: 100%;
+    height: 100vh;
+    display: block;
+    flex-wrap: wrap;
+    text-align: center;
+    background-image: url('../imagenes/16329813_Kerfin7_NEA_2340.jpg');
+    image-rendering: auto;
+    background-repeat: repeat;
+    background-size:cover;
+    background-position: center;
+    overflow-x: hidden;
+    margin-top: 0%;
+  }
+  .botonDetail{
+    text-decoration: none;
+    background-color:  rgb(206, 7, 17);;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .dcard{
+    background-color: rgba(0, 0, 0, 0.856);
+    margin-left: 20%;
+    margin-right:20%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    color:white
+  }
+  .name{
+    color: black; 
+    text-shadow: 1px 1px 20px red, -1px -1px 20px red;
+    margin-top: 0px;
+    color:white;
+  }
+  .imgdetail{
+    width: 50%;
+    height:23vmax;
+  
+  }
+  .texto{
+
+  }
+  

@@ -1,0 +1,42 @@
+.div{
+    text-decoration: none;
+    width: 270px;
+    height: 260px;
+    border-radius: 3%;
+    background-color:  rgb(206, 7, 17);;
+    border:1px solid  rgb(255, 255, 255);
+    margin-bottom:10px;
+    margin-top:5px;
+    padding-top: 0px;
+  }
+  .div:hover{
+    text-decoration: none;
+    width: 270px;
+    height: 260px;
+    border-radius: 3%;
+    background-color:  rgb(255, 94, 0);;
+    border:1px solid  rgb(255, 255, 255);
+    margin-bottom:10px;
+    margin-top:5px;
+    padding-top: 0px;
+  }
+  .img {
+    width: 270px;
+    height: 160px;
+    border-radius: 7px;
+    padding: px;
+  }
+  .h3{
+    margin-top: 5px;
+    padding-top:0px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    color: white;
+    text-shadow: 1px 1px 10px rgb(0, 0, 0), -1px -1px 10px rgb(0, 0, 0);
+    text-decoration: none;
+  }
+  .h5{
+    color: white;
+    text-shadow: 1px 1px 10px rgb(0, 0, 0), -1px -1px 10px rgb(0, 0, 0);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: none;
+  }

@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('genero', {
     
     name: { 
-      type: DataTypes.STRING,
+      type:DataTypes.STRING,
       allowNull:false
     }
   },
@@ -14,7 +14,10 @@ module.exports = (sequelize) => {
     timestamps:false
   });
 };
+   
+   
   
+     
    
   
      

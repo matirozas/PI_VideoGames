@@ -1,8 +1,13 @@
 import React from "react";
+import {useDispatch} from 'react-redux';
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import s from '../style/Home.module.css'
+
+import s from '../style/CreateGame.module.css'
+import {postVideojuego} from '../actions'
+
+
 
 
 function validate(input) {
@@ -20,35 +25,35 @@ function validate(input) {
       error.released = "Ingrese Fecha DD/MM/AAAA"
     }
     
-    if (!input.rating) {
-      error.rating = "Ingrese Rating";
-    } else if (!/^([1-5](\.[0-9]{1,2})?)$/.test(input.rating)) {
-        error.rating ='rating incorrecto'}
+    if (!/^([1-5](\.[0-9]{1,2})?)$/.test(input.rating)) {
+        error.rating ='Ingrese un numero del 1 al 5.9'}
     
-    if (input.genres.length < 1) {
-     
-      error.genres = "Seleccione un Genero";
+        
+        if (input.genres.length < 1) {
+      error.genres = 'Seleccione un Genero'
     }
     
     if (input.platforms.length<1) {
-      error.platforms = "Seleccione una Plataforma";
+      error.platforms = 'Seleccione una Plataforma';
 
     }  
     return error;
   }
 
-const CreateGame =()=>{
+  const CreateGame =()=>{
+    
+    const dispatch=useDispatch()
 
     const initialState={
-        name:'',
-        background_image:'',
-        description:'',
-        released:'',
-        rating:'ingrese numero',
-        genres:[],
-        platforms:[]
-
+      name:'',
+      description:'',
+      released:'',
+      rating:'',
+      genres:[],
+      platforms:[]
     }
+      
+
 
     let [input,setInput]= useState(initialState);
     let [error,setError]= useState({})
@@ -73,6 +78,7 @@ const CreateGame =()=>{
         [e.target.name]:e.target.value
         
       }))
+
     
     if(e.target.name==='platforms'){
       if(!(input.platforms.includes(e.target.value))&& (e.target.value!==''))
@@ -96,26 +102,29 @@ const CreateGame =()=>{
       }}
         
     
-    if(e.target.name==='genres'){
-    if(!(input.genres.includes(e.target.value))&& (e.target.value!==''))
-    {
-      setInput({
-        ...input,
-        genres:[...input.genres, e.target.value] 
-      })
-    }else if(input.genres.includes(e.target.value)){
-      setInput({
-        ...input,
-        genres:[...input.genres.filter(p=> p!==e.target.value)]
-      })
-
-    }else{
-      setInput({
-        ...input,
-        genres:[...input.genres]
-    })
-  } }
-  }
+ 
+    
+      if(e.target.name==='genres'){
+        if(!(input.genres.includes(e.target.value))&& (e.target.value!==''))
+        {
+          setInput({
+            ...input,
+            genres:[...input.genres, e.target.value] 
+          })
+        }else if(input.genres.includes(e.target.value)){
+          setInput({
+            ...input,
+            genres:[...input.genres.filter(p=> p!==e.target.value)]
+          })
+    
+        }else{
+          setInput({
+            ...input,
+            genres:[...input.genres]
+        })
+      } }
+    }
+    
     
       
       
@@ -123,18 +132,22 @@ const CreateGame =()=>{
       
       let handleOnSubmit = (e)=>{
         e.preventDefault();
-        axios.post('http://localhost:3001/videogames', input)
-        alert('juego creado')
+       console.log(input)
+       dispatch(postVideojuego(input))
+       console.log(input)
+        
+        alert('Juego creado correctamente')
         setInput({
           name:'',
-          background_image:'',
           description:'',
           released:'',
-          rating:"3",
+          rating:'',
           genres:[],
           platforms:[]
         })
+        console.log(input)
       }
+        
 
 
 
@@ -153,6 +166,7 @@ const CreateGame =()=>{
                 </Link>
         <h2 className={s.h2}>CREA TU PROPIO JUEGO</h2>
         <form className={s.createForm} onSubmit={handleOnSubmit}>
+                     
            <div>
                 <label className={s.label}>NOMBRE </label><br />
                 <input
@@ -164,7 +178,6 @@ const CreateGame =()=>{
                 />
            </div>
            <p className={s.error}>{error.name}</p>
-                     
 
            <div>
                 <label  className={s.label}>DESCRIPCION </label><br />
@@ -209,33 +222,33 @@ const CreateGame =()=>{
        
            
             <label  className={s.label}>GENEROS</label>
-            <select  className={s.input} name='genres'value={input.genres} onChange={handleOnChange}>genres
-                  <option></option>
-                  <option value=' Action'>Action</option>
-                  <option value=' Indie'>Indie</option>
-                  <option value=' Casual'>Casual</option>
-                  <option value=' Adventure'>Adventure</option>
-                  <option value=' RPG'>RPG</option>
-                  <option value=' Strategy'>Strategy</option>
-                  <option value=' Simulation'>Simulation</option>
-                  <option value=' Shooter'>Shooter</option>
-                  <option value=' Puzzle'>Puzzle</option>
-                  <option value=' Arcade'>Arcade</option>
-                  <option value=' Plataformer'>Platformer</option>
-                  <option value=' Racing'>Racing</option>
-                  <option value=' Massively Multiplayer'>
+            <select  className={s.input} name='genres'value={input.genres} onChange={handleOnChange}>
+                  <option ></option>
+                  <option value='Action'>Action</option>
+                  <option value='Indie'>Indie</option>
+                  <option value='Casual'>Casual</option>
+                  <option value='Adventure'>Adventure</option>
+                  <option value='RPG'>RPG</option>
+                  <option value='Strategy'>Strategy</option>
+                  <option value='Simulation'>Simulation</option>
+                  <option value='Shooter'>Shooter</option>
+                  <option value='Puzzle'>Puzzle</option>
+                  <option value='Arcade'>Arcade</option>
+                  <option value='Plataformer'>Platformer</option>
+                  <option value='Racing'>Racing</option>
+                  <option value='Massively Multiplayer'>
                     Massively Multiplayer
                   </option>
-                  <option value=' Sports'>Sports</option>
-                  <option value=' Fighting'>Fighting</option>
-                  <option value=' Family'>Family</option>
-                  <option value=' Board Games'>Board Games</option>
-                  <option value=' Educational'>Educational</option>
-                  <option value=' Card'>Card</option>
+                  <option value='Sports'>Sports</option>
+                  <option value='Fighting'>Fighting</option>
+                  <option value='Family'>Family</option>
+                  <option value='Board Games'>Board Games</option> 
+                  <option value='Educational'>Educational</option>
+                  <option value='Card'>Card</option>
                 </select>
                     <p className={s.option}>{input.genres}</p>
-                    <p className={s.suprimirFiltros}>*Para borrar un Genero vuelva a seleccionarlo</p>
                     <p className={s.error}>{error.genres}</p>
+                    <p className={s.suprimirFiltros}>*Para borrar un Genero vuelva a seleccionarlo</p>
                 
                 
                         
@@ -245,7 +258,7 @@ const CreateGame =()=>{
                 
                   <label  className={s.label} >PLATAFORMAS</label>
                     <select  className={s.input} name='platforms'value={input.platforms} onChange={handleOnChange}>
-                      <option></option>
+                     <option></option>
                       <option value=' PC'>PC</option>
                       <option value=' Play Station 5'>Play Station 5</option>
                       <option value=' Play Station 4'>Play Station 4</option>
@@ -263,11 +276,11 @@ const CreateGame =()=>{
                       <option value=' Play Station 3'>Play Station 3</option>
                     </select>
                       <p className={s.option}>{input.platforms}</p>
-                      <p className={s.suprimirFiltros}>*Para borrar una Plataforma vuelva a seleccionarlo</p>
                       <p className={s.error}>{error.platforms}</p>
+                      <p className={s.suprimirFiltros}>*Para borrar una Plataforma vuelva a seleccionarlo</p>
 
 
-       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'className={s.botonCrearJ}>CREAR JUEGO</button>
+       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'  className={s.botonCrearJ}>CREAR JUEGO</button>
         </form>
         </div>
     )

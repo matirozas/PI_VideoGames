@@ -7,6 +7,7 @@ import GameCard from './GameCard';
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
 import s from '../style/Home.module.css'
+import Loading from './Loading';
 
 
 export default function Home(){
@@ -22,7 +23,7 @@ export default function Home(){
     const [juegosPorPag]= useState(15)
     const indiceUltimoJuego= pagActual * juegosPorPag
     const indicePrimerJuego = indiceUltimoJuego - juegosPorPag
-    const juagosActuales = allGames.slice(indicePrimerJuego,indiceUltimoJuego)
+    const juegosActuales = allGames.slice(indicePrimerJuego,indiceUltimoJuego)
     const [orden,setOrden] = useState('')
 
  
@@ -30,13 +31,16 @@ export default function Home(){
         setPagActual(numeroDePag)
     }
     
-    const filtroPorGenero = (e) => {
-        dispatch(filtrarPorGenero(e.target.value))
-    }
-    
     const filtroJuego = (e) => {
         dispatch( filtrarJuego(e.target.value))
+        setPagActual(1)
     }
+
+    const filtroPorGenero = (e) => {
+        dispatch(filtrarPorGenero(e.target.value))
+        setPagActual(1)
+    }
+    
     
     const ordenAlfab = (e) => {
         dispatch( ordenarAlfab(e.target.value))
@@ -80,6 +84,14 @@ export default function Home(){
             
            
 
+                <div className={s.filtros}>TIPO DE JUEGO
+                    <select className={s.select} onChange={e=>filtroJuego(e)}>
+                        <option value='todos' >Todos</option>
+                        <option value='api' >Api</option>
+                        <option value='creado' >Creado</option>
+                    </select>
+                </div> 
+
                 <div className={s.filtros}>GENEROS
                     <select className={s.select} onChange={e => filtroPorGenero(e)}>
                         <option value='Todos'>Todos</option>
@@ -107,13 +119,6 @@ export default function Home(){
                     </select>
                 </div>
         
-                <div className={s.filtros}>TIPO DE JUEGO
-                    <select className={s.select} onChange={e=>filtroJuego(e)}>
-                        <option value='todos' >Todos</option>
-                        <option value='api' >Api</option>
-                        <option value='creado' >Creado</option>
-                    </select>
-                </div> 
                  
                 <div className={s.filtros} >ORDENAR
                     <select className={s.select} onChange={e=>ordenAlfab(e)} >
@@ -132,20 +137,23 @@ export default function Home(){
                  </div>
                     
             </div>
+
                      <Paginado
+                     setPagActual={setPagActual}
+                     pagActual={pagActual}
                      juegosPorPag={juegosPorPag}
                      allGames={allGames.length}
                      paginado={paginado}/>
                  
             
 
-
            
            
           
 
+                {juegosActuales.length?
             <div className={s.fondo}>
-                {juagosActuales&&juagosActuales.map(j=>{
+                {juegosActuales&&juegosActuales.map(j=>{
                     return (
                         <div >
                             
@@ -164,10 +172,10 @@ export default function Home(){
                                 </Link>
                         </div> 
                     )
-                })}
+                })} 
             </div>
-        
             
+            : <Loading/>}
         </div>
         
     )

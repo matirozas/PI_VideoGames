@@ -1,0 +1,35 @@
+.buscador{
+    border-radius: 25px;
+  }
+  .searchBar{
+    width: 250px;
+    height: 39px;
+    padding:1px ;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    cursor: pointer;
+   }
+   .searchBarB{
+     width: 44px;
+     height: 42px;
+     border:2px;
+     padding: 16px;
+     border-bottom-right-radius: 8px;
+     border-top-right-radius: 8px;
+     background-image: url('../imagenes/lupaaassaa.jpeg');
+     max-width: 43px;
+     cursor: pointer;
+     font-size:medium;
+   }
+   .searchBarB:hover{
+     width: 44px;
+     height: 42px;
+     border:2px;
+     padding: 16px;
+     border-bottom-right-radius: 8px;
+     border-top-right-radius: 8px;
+     background-image: url('../imagenes/lupahover.jpg');
+     max-width: 43px;
+     cursor: pointer;
+     font-size:medium;
+   }

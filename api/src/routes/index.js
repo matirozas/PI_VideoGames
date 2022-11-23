@@ -48,9 +48,9 @@ const Db = async()=>{
         include:{
             model:Genero, 
             attributes:["name"],
-            through: {
+              through: {
                 attributes: [],
-              }
+              } 
             
         }
     })
@@ -91,7 +91,7 @@ const juegosApi =  await ApiVG()
 
 const buscarPorName = async (name)=>{
     const juegos= await totalDeJuegos();
-    const juego= await juegos.filter(j=>j.name.toLowerCase().includes(name.toLowerCase()))
+    const juego=  juegos.filter(j=>j.name.toLowerCase().includes(name.toLowerCase()))
     return juego.slice(0,15)
 }
         
@@ -261,11 +261,12 @@ router.post('/videogames', async (req,res)=>{
             }
         });  
         crearVG.addGenero(vgGenero) 
+       
         res.send(crearVG)  
     } catch (error) {
         console.log(error)
     }
-        
+         
              
          
      
