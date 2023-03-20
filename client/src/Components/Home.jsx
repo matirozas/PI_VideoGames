@@ -14,7 +14,6 @@ import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import s from "../style/Home.module.css";
 import Loading from "./Loading";
-import GameDetail from "./GameDetail";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ export default function Home() {
   const indiceUltimoJuego = pagActual * juegosPorPag;
   const indicePrimerJuego = indiceUltimoJuego - juegosPorPag;
   const juegosActuales = allGames.slice(indicePrimerJuego, indiceUltimoJuego);
-  const [orden, setOrden] = useState("");
+  const [setOrden] = useState("");
 
   const paginado = (numeroDePag) => {
     setPagActual(numeroDePag);
@@ -72,7 +71,7 @@ export default function Home() {
           <Link className={s.navDiv} to="/create">
             <button className={s.recargar}>CREAR JUEGO</button>
           </Link>
-          
+
         </div>
         <div>
           <SearchBar className={s.searchBar} />
