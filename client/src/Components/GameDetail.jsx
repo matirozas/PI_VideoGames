@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getGameId} from '../actions';
 import { Link } from 'react-router-dom';
 import s from '../style/GameDetail.module.css'
+import se from '../style/Home.module.css'
 
 
 
@@ -13,7 +14,7 @@ export default function GameDetail({id}) {
      
     useEffect(()=>{
        dispatch(getGameId(id))
-      },[dispatch]) 
+      },[dispatch,id]) 
       
       const game = useSelector((state) => state.gameDetail);
         if (!game.background_image){
@@ -21,10 +22,25 @@ export default function GameDetail({id}) {
 
         }
       return (
+        
+          
           <div className={s.detailF}>
-              <Link to='/home'>
-                <button className={s.botonDetail}>VOLVER</button>
+            <nav className={se.nav}>
+                
+                <div className={se.divnav}>
+                <Link to='/home'>
+                    <button className={se.recargar}  >HOME</button>
                 </Link>
+                
+                
+                  
+
+                <Link  className={se.navDiv} to='/create'>
+                    <button className={se.recargar}>CREAR JUEGO</button>
+                </Link>
+                
+            </div>
+        </nav>
             <div className={s.dcard}>
 
               <h1 className={s.name}> {game.name}</h1>

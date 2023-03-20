@@ -1,6 +1,6 @@
 .ul{
     background-color:  rgba(20, 20, 22, 0);
-    margin:0px;
+    margin:10px;
     padding-top: 2px;
     padding-bottom: 7px;
   }
@@ -25,6 +25,8 @@
     color: white;
     background-color:   rgb(255, 94, 0);
     cursor: pointer;
+    box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+
   }
   .pagi{
     justify-content: space-evenly;
@@ -36,4 +38,6 @@
     color: white;
     background-color:   rgb(255, 94, 0);
     cursor: pointer;
+    box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+
   }

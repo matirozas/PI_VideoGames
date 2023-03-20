@@ -57,7 +57,8 @@ const juegosApi =  await ApiVG()
             rating:j.dataValues.rating,
             genres:j.dataValues.generos.map(j=>j.name),
             platforms:j.dataValues.platforms,
-            description:j.dataValues.description
+            description:j.dataValues.description,
+            background_image:j.dataValues.background_image
         }
     })
     

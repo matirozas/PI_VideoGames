@@ -1,135 +1,171 @@
-.fondoComp{
+.fondoComp {
   width: 100%;
   height: 100vh;
   display: block;
   flex-wrap: wrap;
   text-align: center;
-  background-image: url('../imagenes/fondo\ home\ violeta.jpg');
+  background-color: rgb(77, 29, 122);
+  background-image: url("../imagenes/fondo\ home\ violeta.jpg");
   image-rendering: auto;
   background-repeat: repeat;
-  background-size:contain;
+  background-size: contain;
   background-position: center;
   overflow-x: hidden;
   margin-top: 0%;
 }
-.nav{
+
+.nav {
   background-color: rgb(50, 39, 82);
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 6px;
-  padding-bottom: 9px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+  
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
 }
-.divnav{
-  display:flex;
-  justify-content:space-between;
-  padding: 10px;
+
+.divnav {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 35px;
 }
-.recargar{
+
+.recargar {
   text-decoration: none;
-   background-color:  rgb(206, 7, 17);
-   border-radius: 5px;
-   color: white;
-   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-   font-size: large;
- }
-.recargar:hover{
-  text-decoration: none;
-  background-color:  rgb(255, 94, 0);
+  background-color: rgb(206, 7, 17);
   border-radius: 5px;
   color: white;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: large;
 }
-.searchBar{
-  width: 250px;
-  height: 39px;
-  padding:1px ;
+
+.recargar:hover {
+  text-decoration: none;
+  background-color: rgb(255, 94, 0);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
+  box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+}
+
+.searchBar {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   cursor: pointer;
+  display: flex;
+  
+  justify-content: space-between;
 }
-.navDiv{
+
+.navDiv {
   text-decoration: none;
   display: flex;
   justify-content: start;
+  padding-left: 20px;
 }
-.divFiltros{
-  display:flex;
-  justify-content:space-evenly;
-  padding-top: 10px;
+
+.divFiltros {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 85px;
   padding-bottom: 5px;
   background-color: rgba(43, 35, 72, 0);
 }
-.button{
+
+.button {
   text-decoration: none;
-  background-color:  rgb(206, 7, 17);;
+  background-color: rgb(206, 7, 17);
   border-radius: 5px;
   border: 1px solid black;
   color: white;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: large;
   margin-top: 5px;
 }
+
 .card {
   width: 25%;
   height: 50px;
-  ;
   text-decoration: none;
 }
-.divfc{
-filter: blur(4px);
+
+.divfc {
+  filter: blur(4px);
 }
-.imgdefault{
-  background-image: url('../imagenes/2438131_11854.jpg');
+
+.imgdefault {
+  background-image: url("../imagenes/2438131_11854.jpg");
 }
-.select{
-  width:100%;
+
+.select {
+  width: 100%;
   text-align: center;
-  border-bottom-left-radius:5px;
-  border-bottom-right-radius:5px;
-   cursor: pointer;
- }
- .recargar{
-   text-decoration: none;
-    background-color:  rgb(206, 7, 17);
-    border-radius: 5px;
-    color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-    font-size: large;
-  }
-  .recargar:hover{
-    text-decoration: none;
-    background-color:  rgb(255, 94, 0);
-    border-radius: 5px;
-    color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-    font-size: large;
-  }
-  .fondo{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-  .filtros{
-    width: 150px;
-    background-color: rgb(206, 7, 17);
-    border-radius: 5px;
-     color: white;
-     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-     font-size: small;
-   }
-   .filtros:hover{
-     width: 150px;
-     background-color: rgb(255, 94, 0);
-     border-radius: 5px;
-      color: white;
-      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-      font-size: small;
-    }
-  
-    .imgg{
-      background-image: url('../imagenes/deail.jpg');
-    }
-    .link{
-      text-decoration: none;
-    }
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.recargar {
+  text-decoration: none;
+  background-color: rgb(206, 7, 17);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
+}
+
+.recargar:hover {
+  text-decoration: none;
+  background-color: rgb(255, 94, 0);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
+  box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+}
+
+.fondo {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.filtros {
+  width: 150px;
+  margin-top: 5px;
+  background-color: rgb(206, 7, 17);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: small;
+}
+
+.filtros:hover {
+  width: 150px;
+  background-color: rgb(255, 94, 0);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: small;
+  box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+}
+
+.imgg {
+  background-image: url("../imagenes/deail.jpg");
+}
+
+.link {
+  text-decoration: none;
+}

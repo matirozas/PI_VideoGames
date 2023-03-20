@@ -2,11 +2,10 @@ import React from "react";
 import {useDispatch} from 'react-redux';
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import s from '../style/CreateGame.module.css'
 import {postVideojuego} from '../actions'
-
 
 
 
@@ -41,6 +40,8 @@ function validate(input) {
   }
 
   const CreateGame =()=>{
+
+    const history=useHistory()
     
     const dispatch=useDispatch()
 
@@ -50,7 +51,8 @@ function validate(input) {
       released:'',
       rating:'',
       genres:[],
-      platforms:[]
+      platforms:[],
+      background_image:''
     }
       
 
@@ -143,9 +145,11 @@ function validate(input) {
           released:'',
           rating:'',
           genres:[],
-          platforms:[]
+          platforms:[],
+          background_image:''
         })
         console.log(input)
+        history.push('/home')
       }
         
 
@@ -162,7 +166,7 @@ function validate(input) {
     return(
         <div className={s.fondoCreate}>
         <Link  to ='/home'>
-                    <button className={s.recargar}>VOLVER</button>
+                    <button className={s.recargar}>HOME</button>
                 </Link>
         <h2 className={s.h2}>CREA TU PROPIO JUEGO</h2>
         <form className={s.createForm} onSubmit={handleOnSubmit}>
@@ -178,6 +182,17 @@ function validate(input) {
                 />
            </div>
            <p className={s.error}>{error.name}</p>
+
+           <div>
+                <label className={s.label}> IMAGEN </label><br />
+                <input
+                 className={s.input} 
+                type='text'
+                value={input.background_image}
+                name='background_image'
+                onChange={handleOnChange}
+                />
+           </div>
 
            <div>
                 <label  className={s.label}>DESCRIPCION </label><br />
@@ -259,21 +274,21 @@ function validate(input) {
                   <label  className={s.label} >PLATAFORMAS</label>
                     <select  className={s.input} name='platforms'value={input.platforms} onChange={handleOnChange}>
                      <option></option>
-                      <option value=' PC'>PC</option>
-                      <option value=' Play Station 5'>Play Station 5</option>
-                      <option value=' Play Station 4'>Play Station 4</option>
-                      <option value=' Xbox One'>Xbox One</option>
-                      <option value=' Xbox Series S/X'>Xbox Series S/X</option>
-                      <option value=' Nintendo Switch'>Nintendo Switch</option>
-                      <option value=' iOS'>iOS</option>
-                      <option value=' Android'>Android</option>
-                      <option value=' Nintendo 3DS'>Nintendo 3DS</option>
-                      <option value=' Nintendo DS'>Nintendo DS</option>
-                      <option value=' Nintendo DSi'>Nintendo DSi</option>
-                      <option value=' macOS'>macOS</option>
-                      <option value=' Linux'>Linux</option>
-                      <option value=' Xbox 360'>Xbox 360</option>
-                      <option value=' Play Station 3'>Play Station 3</option>
+                      <option value='PC'>PC</option>
+                      <option value='Play Station 5'>Play Station 5</option>
+                      <option value='Play Station 4'>Play Station 4</option>
+                      <option value='Xbox One'>Xbox One</option>
+                      <option value='Xbox Series S/X'>Xbox Series S/X</option>
+                      <option value='Nintendo Switch'>Nintendo Switch</option>
+                      <option value='iOS'>iOS</option>
+                      <option value='Android'>Android</option>
+                      <option value='Nintendo 3DS'>Nintendo 3DS</option>
+                      <option value='Nintendo DS'>Nintendo DS</option>
+                      <option value='Nintendo DSi'>Nintendo DSi</option>
+                      <option value='macOS'>macOS</option>
+                      <option value='Linux'>Linux</option>
+                      <option value='Xbox 360'>Xbox 360</option>
+                      <option value='Play Station 3'>Play Station 3</option>
                     </select>
                       <p className={s.option}>{input.platforms}</p>
                       <p className={s.error}>{error.platforms}</p>

@@ -25,7 +25,7 @@ if (name) {
 
 router.post('/', async (req,res)=>{
   
-    let { name, description, released, rating, genres, platforms } = req.body;
+    let { name, description, released, rating, genres, platforms, background_image } = req.body;
     
     if(!name||!description||!released||!rating||!platforms){return res.send('faltan datos')} 
   
@@ -40,11 +40,15 @@ router.post('/', async (req,res)=>{
                 description,
                 released, 
                 rating,
-                platforms
+                platforms,
+                background_image
             }
         });  
+
         crearVG.addGenero(vgGenero) 
-       
+        console.log('crearVG',crearVG)
+        console.log('--------------------------------------------------------')
+        console.log('vgGenero',vgGenero)
         res.send(crearVG)  
     } catch (error) {
         console.log(error)

@@ -13,7 +13,6 @@ const ApiId= async (id) => {
     return {
         id:apiID.data.id,
         background_image  :apiID.data.background_image,
-        
         name:apiID.data.name,
         genres: apiID.data.genres.map(g=>{return g.name}),
         description: apiID.data.description_raw, 
@@ -22,6 +21,7 @@ const ApiId= async (id) => {
         platforms: apiID.data.platforms.map(p=> {return  p.platform.name}),
     }
 }    
+        
      
 const DbId = async(id)=>{ 
     const juegoID = await Videogame.findByPk(id,   
@@ -40,8 +40,8 @@ const DbId = async(id)=>{
             released:juegoID.released,
             rating:juegoID.rating,
             platforms:juegoID.platforms,
-            description:juegoID.description
-               
+            description:juegoID.description,
+            background_image:juegoID.background_image
         }    
         return jID 
     }    

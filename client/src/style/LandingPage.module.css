@@ -39,5 +39,6 @@
     font-size: large;
     margin-top: 5px;
     box-shadow: 1px 1px 20px rgb(255, 255, 255), -1px -1px 20px rgb(255, 255, 255);
+    box-shadow: 1px 1px 40px rgb(189, 10, 196), -1px -1px 40px rgb(189, 10, 196);
     
   }

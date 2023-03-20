@@ -23,6 +23,19 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .botonDetail:hover{
+    text-decoration: none;
+    background-color:  rgb(255, 94, 0);;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+    cursor: pointer;
+  }
   .dcard{
     background-color: rgba(0, 0, 0, 0.856);
     margin-left: 20%;

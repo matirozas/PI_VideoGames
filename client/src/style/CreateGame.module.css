@@ -28,6 +28,8 @@
   color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
   font-size: large;
+  box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+
 }
  
   .h2{
@@ -74,7 +76,7 @@
 
   .botonCrearJ{
     text-decoration: none;
-    background-color:  rgba(71, 254, 4, 0.783);;
+    background-color:  rgba(71, 254, 4, 0.783);
     border-radius: 5px;
     border: 1px solid black;
     color: white;
@@ -83,6 +85,20 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .botonCrearJ:hover{
+    text-decoration: none;
+    background-color:  rgba(71, 254, 4, 0.783);
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 10px;
+    box-shadow: 1px 1px 20px rgb(189, 10, 196), -1px -1px 20px rgb(189, 10, 196);
+    margin-bottom: 10px;
+  }
+
+ 
   .botonCrearJ:disabled{
     text-decoration: none;
     background-color:  rgba(124, 3, 3, 0.663);;
@@ -93,7 +109,24 @@
     font-size: large;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-shadow: 1px 1px 20px rgb(14, 13, 14), -1px -1px 20px rgb(15, 15, 15);
+
   }
+  
+  .botonCrear{
+    text-decoration: none;
+    background-color:  rgba(124, 3, 3, 0.663);;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+
+    
   .error{
     color: rgb(255, 170, 0);
    text-shadow: 1px 1px 50px rgb(255, 255, 255), -1px -1px 50px rgb(255, 255, 255);
