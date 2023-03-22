@@ -30,9 +30,9 @@ router.post('/', async (req,res)=>{
     if(!name||!description||!released||!rating||!platforms){return res.send('faltan datos')} 
   
     try {
-        let vgGenero = await Genero.findAll({
+      /*   let vgGenero = await Genero.findAll({
         where: { name: genres}});
-      
+       */
         let [crearVG]= await Videogame.findOrCreate({
             where:{name:name},
             defaults:{
@@ -40,15 +40,16 @@ router.post('/', async (req,res)=>{
                 description,
                 released, 
                 rating,
+                genres,
                 platforms,
                 background_image
             }
         });  
 
-        crearVG.addGenero(vgGenero) 
+      /*   crearVG.addGenero(vgGenero)  */
         console.log('crearVG',crearVG)
         console.log('--------------------------------------------------------')
-        console.log('vgGenero',vgGenero)
+  
         res.send(crearVG)  
     } catch (error) {
         console.log(error)

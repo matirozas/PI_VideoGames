@@ -24,19 +24,13 @@ const ApiId= async (id) => {
         
      
 const DbId = async(id)=>{ 
-    const juegoID = await Videogame.findByPk(id,   
-        {
-            include:{
-                model:Genero,
-                attributes:["name"],
-            }
-        })
+    const juegoID = await Videogame.findByPk(id)
       
     const jID={
             
             id:juegoID.id,
             name:juegoID.name,
-            genres:juegoID.generos.map(e=>e.dataValues.name),
+            genres:juegoID.genres,
             released:juegoID.released,
             rating:juegoID.rating,
             platforms:juegoID.platforms,

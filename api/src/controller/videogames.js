@@ -34,34 +34,26 @@ const ApiVG= async () => {
             
                 
 const Db = async()=>{
-    return await Videogame.findAll({
-        include:{
-            model:Genero, 
-            attributes:["name"],
-              through: {
-                attributes: [],
-              } 
-            
-        }
-    })
+    return await Videogame.findAll()
 }
+
                 
 const totalDeJuegos = async () =>{
 const juegosApi =  await ApiVG()
     const jDb = await Db()   
- 
+
     const juegosDb=jDb.map(j=>{
         return{
             id:j.dataValues.id,
             name:j.dataValues.name,
             rating:j.dataValues.rating,
-            genres:j.dataValues.generos.map(j=>j.name),
+            genres:j.dataValues.genres,
             platforms:j.dataValues.platforms,
             description:j.dataValues.description,
             background_image:j.dataValues.background_image
         }
     })
-    
+   
     const juegos= juegosApi.concat(juegosDb)
     return juegos
 } 

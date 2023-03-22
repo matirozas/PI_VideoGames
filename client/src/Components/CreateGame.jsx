@@ -295,7 +295,7 @@ function validate(input) {
                       <p className={s.suprimirFiltros}>*Para borrar una Plataforma vuelva a seleccionarlo</p>
 
 
-       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'  className={s.botonCrearJ}>CREAR JUEGO</button>
+       <button disabled={!input.name|| Object.keys(error).length>0} type='submit'  className={s.botonCrearJ}>ADD GAME</button>
         </form>
         </div>
     )

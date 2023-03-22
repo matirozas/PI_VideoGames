@@ -4,6 +4,7 @@ import LandingPage from './Components/LandingPage'
 import Home from './Components/Home';
 import GameDetail from './Components/GameDetail';
 import CreateGame from './Components/CreateGame';
+import UpdateGame from './Components/UpdateGame';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path='/' component={LandingPage}/>
         <Route path='/home' component={Home}/>
         <Route path='/gamedetail/:id' render={({ match }) => <GameDetail match={match} id={match.params.id} />}/>
+        <Route path='/updateGame/:id' render={({ match }) => <UpdateGame match={match} id={match.params.id} />}/>
         <Route path='/create' component={CreateGame}/>
         
         

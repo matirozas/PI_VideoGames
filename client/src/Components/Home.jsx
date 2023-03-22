@@ -69,7 +69,7 @@ export default function Home() {
           </button>
 
           <Link className={s.navDiv} to="/create">
-            <button className={s.recargar}>CREAR JUEGO</button>
+            <button className={s.recargar}>ADD GAME</button>
           </Link>
 
         </div>
@@ -153,8 +153,15 @@ export default function Home() {
                       background_image={j.background_image}
                       name={j.name}
                       genres={j.genres}
+                      id={j.id}
+                      platform={j.platform}
+                      released={j.released}
+                      description={j.description}
+                      rating={j.rating}
+                      
                     />
                   </Link>
+                
                 </div>
               );
             })}

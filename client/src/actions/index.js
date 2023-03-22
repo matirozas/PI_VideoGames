@@ -11,6 +11,7 @@ export const POST_VIDEOJUEGO = 'POST_VIDEOJUEGO'
 
 
 
+
 export const getAllGames = () => async (dispatch) => {
     const json = await axios(`http://localhost:3001/videogames`);
     dispatch({
@@ -61,6 +62,8 @@ export const getAllGames = () => async (dispatch) => {
       payload
     }
   }
+
+  
   
   export const postVideojuego = (payload) => {
     return async function (dispatch) {

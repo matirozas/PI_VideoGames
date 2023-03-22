@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
     },
     background_image:{
       type:DataTypes.STRING
+    },
+    genres: { 
+      type:DataTypes.STRING,
+      allowNull:false
     }
    
       

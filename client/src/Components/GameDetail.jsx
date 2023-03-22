@@ -17,6 +17,7 @@ export default function GameDetail({id}) {
       },[dispatch,id]) 
       
       const game = useSelector((state) => state.gameDetail);
+      console.log('magiaaaaaaaa',game)
         if (!game.background_image){
           game.background_image='https://static.vecteezy.com/system/resources/previews/002/293/504/non_2x/video-games-neon-sign-vector.jpg';
 
@@ -36,7 +37,7 @@ export default function GameDetail({id}) {
                   
 
                 <Link  className={se.navDiv} to='/create'>
-                    <button className={se.recargar}>CREAR JUEGO</button>
+                    <button className={se.recargar}>ADD GAME</button>
                 </Link>
                 
             </div>
@@ -50,12 +51,17 @@ export default function GameDetail({id}) {
               
               alt=''
               />
+             
+             <h5 className={s.texto}>{` ${game.name}`}</h5>
              <h5 className={s.texto}>Generos: {` ${game.genres}`}</h5>
               <p className={s.texto}>{game.description}</p>
                 <h5 className={s.texto}>{game.released}</h5>
                <h5 className={s.texto}>rating: {game.rating}</h5>
               <h5 className={s.texto}>Plataformas: {` ${game.platforms}`}</h5>
-             
+              {typeof game.id === 'string' && 
+            <Link to={`/updateGame/${id}`}>
+              <button className={s.editar}>EDITAR</button>
+            </Link>}
               </div>
           </div>
         )
