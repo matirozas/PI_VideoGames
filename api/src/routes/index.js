@@ -9,11 +9,11 @@ const deleteGame = require('./deleteGame');
 
 
 
-router.use('/deleteGame',deleteGame);
 router.use('/videogames',videogames);
-router.use('/genres',genres);
 router.use('/videogame',videogame);
+router.use('/genres',genres);
 router.use('/updateGame',updateGame);
+router.use('/deleteGame',deleteGame);
 
 
 module.exports = router;

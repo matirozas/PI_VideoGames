@@ -9,7 +9,7 @@ export default function LandingPage(){
             <h1 className={s.landingH1}>HENRY VIDEOGAMES
             </h1>
                 <Link to ='/home'>
-                    <button className={s.buttonL} >INGRESAR</button>
+                    <button className={s.buttonL} >GET INTO</button>
                 </Link>
         </div>
     )

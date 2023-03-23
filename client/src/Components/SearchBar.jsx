@@ -20,7 +20,7 @@ const SearchBar = ()=>{
 
     const submit=(e)=>{
         e.preventDefault();
-        if(!name)alert('Ingresar Juego')
+        if(!name)alert('Enter Game')
         dispatch(getGame(name))
     }
 

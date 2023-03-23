@@ -9,31 +9,31 @@ import axios from "axios";
 function validate(input) {
   let error = {};
   if (!input.name) {
-    error.name = "Ingrese Nombre";
+    error.name = "Enter Name";
   }
 
   if (!input.description) {
     error.description = "Ingrese Descripcion";
   } else if (input.description.length < 30) {
-    error.description = "Debe ingresar 30 caracteres o mas para la descripcion";
+    error.description = "You must enter 30 characters or more for the description";
   }
   if (
     !input.released ||
     !/^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/.test(input.released)
   ) {
-    error.released = "Ingrese Fecha DD/MM/AAAA";
+    error.released = "Enter Date DD/MM/YYYY";
   }
 
   if (!/^([1-5](\.[0-9]{1,2})?)$/.test(input.rating)) {
-    error.rating = "Ingrese un numero del 1 al 5.9";
+    error.rating = "Enter a number from 1 to 5.9";
   }
 
   if (input.genres.length < 1) {
-    error.genres = "Seleccione un Genero";
+    error.genres = "Select a Genre";
   }
 
   if (input.platforms.length < 1) {
-    error.platforms = "Seleccione una Plataforma";
+    error.platforms = "Select a Platform";
   }
   return error;
 }

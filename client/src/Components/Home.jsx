@@ -80,7 +80,7 @@ export default function Home() {
 
       <div className={s.divFiltros}>
         <div className={s.filtros}>
-          TIPO DE JUEGO
+        GAME TYPE
           <select className={s.select} onChange={(e) => filtroJuego(e)}>
             <option value="todos">Todos</option>
             <option value="api">Api</option>
@@ -89,7 +89,7 @@ export default function Home() {
         </div>
 
         <div className={s.filtros}>
-          GENEROS
+          GENRES
           <select className={s.select} onChange={(e) => filtroPorGenero(e)}>
             <option value="Todos">Todos</option>
             <option value="Action">Action</option>
@@ -115,7 +115,7 @@ export default function Home() {
         </div>
 
         <div className={s.filtros}>
-          ORDENAR
+        ORDER
           <select className={s.select} onChange={(e) => ordenAlfab(e)}>
             <option value="Todos">Todos</option>
             <option value="a-z">A-Z</option>
