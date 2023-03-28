@@ -7,7 +7,7 @@ router.delete("/:id", async (req, res) => {
 
   try {
     const deleteGame = await Videogame.destroy({ where: { id: id } });
-    console.log(deleteGame);
+
     res.send("el juego se borro");
   } catch (error) {
     res.status(404).send("no se pudo borrar el juego");
