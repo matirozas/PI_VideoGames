@@ -1,58 +1,65 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const {ApiVG,Db,totalDeJuegos,buscarPorName}=require('../controller/videogames')
-const {Videogame,Genero} = require('../db');
-
-
+const {
+  ApiVG,
+  Db,
+  totalDeJuegos,
+  buscarPorName,
+} = require("../controller/videogames");
+const { Videogame, Genero } = require("../db");
 
 //GET TODOS LOS JUEGOS O POR QUERY(ID)
 
-router.get('/', async ( req,res)=>{
-const {name}=req.query;
-if (name) {
-    const buscarName= await buscarPorName(name)
-    buscarName.length ? res.json(buscarName) : res.status(404).send ('No existe ningun juego con este nombre')
-}else{
-
-    res.json( await totalDeJuegos())
-}    
-} )      
-
-
+router.get("/", async (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    const buscarName = await buscarPorName(name);
+    buscarName.length
+      ? res.json(buscarName)
+      : res.status(404).send("No existe ningun juego con este nombre");
+  } else {
+    res.json(await totalDeJuegos());
+  }
+});
 
 //POST JUEGO
 
+router.post("/", async (req, res) => {
+  let {
+    name,
+    description,
+    released,
+    rating,
+    genres,
+    platforms,
+    background_image,
+  } = req.body;
 
-router.post('/', async (req,res)=>{
-  
-    let { name, description, released, rating, genres, platforms, background_image } = req.body;
-    
-    if(!name||!description||!released||!rating||!platforms){return res.send('faltan datos')} 
-  
-    try {
-      /*   let vgGenero = await Genero.findAll({
+  if (!name || !description || !released || !rating || !platforms || !genres) {
+    return res.send("faltan datos");
+  }
+
+  try {
+    /*   let vgGenero = await Genero.findAll({
         where: { name: genres}});
        */
-        let [crearVG]= await Videogame.findOrCreate({
-            where:{name:name},
-            defaults:{
-                name,
-                description,
-                released, 
-                rating,
-                genres,
-                platforms,
-                background_image
-            }
-        });  
+    let [crearVG] = await Videogame.findOrCreate({
+      where: { name: name },
+      defaults: {
+        name,
+        description,
+        released,
+        rating,
+        platforms,
+        background_image,
+        genres,
+      },
+    });
 
-      /*   crearVG.addGenero(vgGenero)  */
-        console.log('crearVG',crearVG)
-        console.log('--------------------------------------------------------')
-  
-        res.send(crearVG)  
-    } catch (error) {
-        console.log(error)
-    }
-}) 
-module.exports=router
+    /*   crearVG.addGenero(vgGenero)  */
+    res.send(crearVG);
+  } catch (error) {
+    console.log(error);
+  }
+});
+module.exports = router;

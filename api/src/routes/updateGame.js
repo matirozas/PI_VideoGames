@@ -27,12 +27,12 @@ router.put("/:id", async (req, res) => {
         rating,
         platforms,
         background_image,
+        genres,
       },
       { where: { id } }
-  );
-    
-   return res.send('viedogame modificado')
-    console.log("-----------------", updateVideogame);
+    );
+
+    return res.send("viedogame modificado");
   } catch (error) {
     console.log(error);
   }
