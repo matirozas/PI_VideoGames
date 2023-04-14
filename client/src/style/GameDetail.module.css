@@ -38,25 +38,59 @@
   }
   .dcard{
     background-color: rgba(0, 0, 0, 0.856);
+    margin-top: 82px;
     margin-left: 20%;
     margin-right:20%;
     padding: 10px;
+    
     margin-bottom: 15px;
     border-radius: 10px;
     color:white
   }
   .name{
+    font-size: 40px;
     color: black; 
     text-shadow: 1px 1px 20px red, -1px -1px 20px red;
-    margin-top: 0px;
+    margin: 10px;
     color:white;
+    
   }
   .imgdetail{
-    width: 50%;
+    width: 70%;
     height:23vmax;
+    padding: 10px;
   
   }
-  .texto{
+  .textogenres{
+    font-size: 30px;
+    margin: 0px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+.textoD{
+  font-size:16px;
+}
+.textoP{
+  font-size: 20px;
+  margin: 0px
+}
+.editar {
+  text-decoration: none;
+  background-color: rgb(156, 7, 15);
+  border-radius: 5px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
+  margin: 20px
+}
 
-  }
-  
+.editar:hover {
+  text-decoration: none;
+  background-color: rgb(240, 194, 95);
+  border-radius: 5px;
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
+  box-shadow: 1px 1px 20px rgb(255, 0, 0), -1px -1px 20px rgb(255, 0, 0);
+}

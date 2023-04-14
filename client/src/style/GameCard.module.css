@@ -1,7 +1,7 @@
 .div{
     text-decoration: none;
     width: 330px;
-    height: 350px;
+    height: 370px;
     border-radius: 3%;
     background-color:  rgb(206, 7, 17);;
     border:1px solid  rgb(255, 255, 255);
@@ -9,10 +9,11 @@
     margin-top:5px;
     
   }
+  
   .div:hover{
     text-decoration: none;
     width: 330px;
-    height: 350px;
+    height: 370px;
     border-radius: 3%;
     background-color:  rgb(255, 94, 0);;
     border:1px solid  rgb(255, 255, 255);
@@ -42,19 +43,27 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-decoration: none;
   }
-  .editar{
-    margin-top: 0.1px;
-    
-      text-decoration: none;
-      background-color: rgb(133, 0, 0);
-      border-radius: 5px;
-      border: 1px solid rgb(0, 255, 255);
-      box-shadow: 1px 1px 10px rgb(238, 166, 166), -1px -1px 10px rgb(0, 0, 0);
+  
 
+    .editar {
+      text-decoration: none;
+      background-color: rgb(156, 7, 15);
+      border-radius: 5px;
       color: white;
       font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
       font-size: large;
+    }
+    
+    .editar:hover {
+      text-decoration: none;
+      background-color: rgb(240, 194, 95);
+      border-radius: 5px;
+      color: rgb(0, 0, 0);
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      font-size: large;
+      box-shadow: 1px 1px 20px rgb(14, 15, 0), -1px -1px 20px rgb(14, 15, 0);
     }
     .detalle{
       display: flexbox;
@@ -62,6 +71,10 @@
     }
 
       
-
+.botones{
+  display: flex;
+  justify-content:space-evenly;
+  margin: 0px;
+}
       
       
